@@ -32,6 +32,13 @@ abstract class Player(name: String) {
     }
   }
 
+  def gainLevel(): Unit ={
+    status.level += 1
+    stats.expToLevel += stats.expToLevel * Exp.ADDITIONAL_PER_LEVEL
+
+    regenerate()
+  }
+
   def regenerate(): Unit ={
     status.health = stats.maxHealth
     status.endurance = stats.maxEndurance

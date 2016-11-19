@@ -1,18 +1,18 @@
 package attributes
 
-import game.Multi
-
 /**
   * Created by valentin on 17.11.16.
   */
 
 class BaseStats {
   //TODO Factor the high level stats into another class
-  var baseDmg: Double = 1
   var maxHealth: Double = 1
   var maxEndurance: Double = 1
   var maxMana: Double = 1
+
   var expToLevel: Double = 10
+
+  val combatStats = new CombatStats
 
   private[this] var _strength: Double = 1
   private[this] var _dexterity: Double = 1
@@ -42,15 +42,15 @@ class BaseStats {
 
   def vitality_=(value: Double): Unit = {
     _vitality = value
-    maxHealth = maxHealth + Multi.MAX_HEALTH * vitality
-    maxEndurance = maxEndurance + Multi.MAX_ENDURANCE * vitality
+    maxHealth = maxHealth + BaseStatsMulti.MAX_HEALTH * vitality
+    maxEndurance = maxEndurance + BaseStatsMulti.MAX_ENDURANCE * vitality
   }
 
   def intelligence: Double = _intelligence
 
   def intelligence_=(value: Double): Unit = {
     _intelligence = value
-    maxMana = maxMana + Multi.MAX_MANA * intelligence
+    maxMana = maxMana + BaseStatsMulti.MAX_MANA * intelligence
   }
 
 }

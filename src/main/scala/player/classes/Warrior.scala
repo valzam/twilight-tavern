@@ -7,26 +7,24 @@ import player.Player
   */
 class Warrior(name: String) extends Player(name) {
 
-  stats.baseDmg = 3
-  stats.strength = 4
-  stats.vitality = 7
-  stats.dexterity = 2
+  stats.combatStats.baseDmg = WarriorBaseStats.BASE_DMG
+  stats.strength = WarriorBaseStats.STRENGTH
+  stats.vitality = WarriorBaseStats.VITALITY
+  stats.dexterity = WarriorBaseStats.DEXTERIRY
 
   regenerate()
 
   def attack(): Double ={
-    return stats.baseDmg + stats.strength * 1.5
+    stats.combatStats.baseDmg + stats.strength * WarriorAttackMulti.MULTI
   }
 
   def levelUp(): Unit ={
-
-    status.level += 1
 
     stats.strength += 2.0
     stats.vitality += 3.0
     stats.dexterity += 1.0
 
-    regenerate()
+    gainLevel()
   }
 
 }

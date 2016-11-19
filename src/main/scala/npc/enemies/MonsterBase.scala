@@ -13,7 +13,7 @@ abstract class MonsterBase {
   val reward = new Reward
 
   def attack(): Double = {
-    return stats.baseDmg
+    stats.combatStats.baseDmg
   }
 
   def takeDmg(dmg: Double): Unit = {
