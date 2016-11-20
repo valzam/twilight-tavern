@@ -15,7 +15,7 @@ class PlayerTest extends FunSuite with BeforeAndAfterEach {
   }
 
 
-  test("Gaining more than the necessary should call the level up method") {
+  test("Gaining more than the necessary exp should call the level up method") {
     val expGained = 11
     p.gainExp(expGained)
     assert(p.status.level == 2)
