@@ -1,7 +1,7 @@
 package player
 
 import attributes.Exp
-import items.{BaseItem, ItemAttributes, Shield, Weapon}
+import items.{ItemAttributes, Weapon}
 import org.scalatest.{BeforeAndAfterEach, FunSuite}
 
 /**
@@ -36,7 +36,7 @@ class PlayerTest extends FunSuite with BeforeAndAfterEach {
   }
 
   test("Equipping an item should add the item's stats to the player's stats"){
-    val testItem = new TestWeapon
+    val testItem = TestWeapon()
     p.equipItem(testItem)
 
     assert(p.stats.dexterity == 6)
@@ -46,19 +46,22 @@ class PlayerTest extends FunSuite with BeforeAndAfterEach {
   }
 
   test("Equipping a weapon should increase the player's base dmg") {
-    val testWeapon = new TestWeapon
+    val testWeapon = TestWeapon()
     p.equipItem(testWeapon)
 
     assert(p.stats.combatStats.baseDmg == 4)
   }
 
   test("Equipping a shield should increase the player's armor") {
-    val testShield = new TestShield
+    val testShield = TestShield()
     p.equipItem(testShield)
 
     assert(p.stats.combatStats.armor == 4)
   }
 
+  test("Unequipping an item should lower the player's stats by the item's stats") {
+
+  }
 }
 
 class MockPlayer(name: String) extends Player(name) {
@@ -69,12 +72,20 @@ class MockPlayer(name: String) extends Player(name) {
   }
 }
 
-case class TestWeapon() extends Weapon {
-  val baseDmg = 3
-  val stats = ItemAttributes(strength = 3, vitality = 2, dexterity = 5)
+object TestWeapon {
+  def apply(): Weapon = {
+    Weapon(baseDmg = 3,
+      attributes = ItemAttributes(strength = 3, vitality = 2, dexterity = 5),
+      name = "Test Weapon", group = "sword")
+  }
+
 }
 
-case class TestShield() extends Shield {
-  val armor = 3
-  val stats = ItemAttributes(strength = 3, vitality = 2, dexterity = 5)
+object TestShield {
+  def apply(): Weapon = {
+    Weapon(armor = 3,
+      attributes = ItemAttributes(strength = 3, vitality = 2, dexterity = 5),
+      name = "Test Shield", group = "shield")
+  }
+
 }

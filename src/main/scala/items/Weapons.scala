@@ -3,20 +3,15 @@ package items
 /**
   * Created by valentin on 18.11.16.
   */
-abstract class Weapon extends BaseItem{
-  val baseDmg: Int
-}
+case class Weapon(baseDmg: Int = 0,
+                  armor: Int = 0,
+                  attributes: ItemAttributes,
+                  name: String,
+                  group: String) extends BaseItem
 
-abstract class Shield extends BaseItem{
-  val armor: Int
-}
-
-case class WoddenSword() extends Weapon {
-  val baseDmg = 3
-  val stats = ItemAttributes(strength = 5)
-}
-
-case class WoddenShields() extends Shield {
-  val armor = 3
-  val stats = ItemAttributes(vitality = 5)
+object WoodenSword {
+  def apply(): Weapon = Weapon(baseDmg = 3,
+                      attributes = ItemAttributes(strength = 5),
+                      name= "Wooden Sword",
+                      group = "sword")
 }

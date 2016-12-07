@@ -1,6 +1,6 @@
 package player.attributes
 
-import items.WoddenSword
+import items.WoodenSword
 import org.scalatest.FunSuite
 
 /**
@@ -11,7 +11,7 @@ class InventoryTest extends FunSuite {
   def fixture =
     new {
       val testInv = new Inventory
-      val testItem = new WoddenSword
+      val testItem = WoodenSword()
     }
 
   test("An inventory should start with 1 gold"){

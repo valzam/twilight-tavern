@@ -8,7 +8,7 @@ import scala.util.Random
 abstract class BaseItem {
 
   val id = IDGenerator()
-  val stats: ItemAttributes
+  val attributes: ItemAttributes
 
 }
 

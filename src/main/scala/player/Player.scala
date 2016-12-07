@@ -1,7 +1,7 @@
 package player
 
 import attributes._
-import items.{BaseItem, Shield, Weapon}
+import items.{BaseItem, Weapon}
 
 /**
   * Created by valentin on 17.11.16.
@@ -12,7 +12,7 @@ abstract class Player(name: String) {
   val stats = new BaseStats
   val inventory = new Inventory
   val armor = new Armor
-  val weapons = new Weapons
+  val equippedWeapons = new EquippedWeapons
 
   stats.setAllToOne()
 
@@ -47,30 +47,25 @@ abstract class Player(name: String) {
   }
 
   def equipItem(item: BaseItem): Unit = {
+    addItemGeneralAttributes(item)
+
     item match {
       case w: Weapon => equipWeapon(w)
-      case s: Shield => equipShield(s)
       case _ =>
+    }
+
+    def equipWeapon(w: Weapon): Unit ={
+      stats.combatStats.baseDmg += w.baseDmg
+      stats.combatStats.armor += w.armor
+      equippedWeapons.equipWeapon(w)
     }
   }
 
-  def equipWeapon(weapon: Weapon): Unit ={
-    addItemGeneralAttributes(weapon)
-    stats.combatStats.baseDmg += weapon.baseDmg
-    weapons.rightHand = weapon
-  }
-
-  def equipShield(shield: Shield): Unit ={
-    addItemGeneralAttributes(shield)
-    stats.combatStats.armor += shield.armor
-    weapons.leftHand = shield
-  }
-
   def addItemGeneralAttributes(item: BaseItem): Unit ={
-    stats.strength += item.stats.strength
-    stats.dexterity += item.stats.dexterity
-    stats.vitality += item.stats.vitality
-    stats.intelligence += item.stats.intelligence
+    stats.strength += item.attributes.strength
+    stats.dexterity += item.attributes.dexterity
+    stats.vitality += item.attributes.vitality
+    stats.intelligence += item.attributes.intelligence
   }
 
   def displayStatus(): Unit ={
