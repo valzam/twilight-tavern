@@ -1,4 +1,4 @@
-package attributes
+package player.attributes
 
 /**
   * Created by valentin on 17.11.16.

@@ -1,7 +1,6 @@
 package game
 
-import attributes.Reward
-import npc.enemies.{MonsterBase, Rat}
+import npc.enemies.{MonsterBase, Rat, Reward}
 import player.Player
 
 /**

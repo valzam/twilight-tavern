@@ -1,4 +1,4 @@
-package attributes
+package player.attributes
 
 import items.WoddenSword
 import org.scalatest.FunSuite

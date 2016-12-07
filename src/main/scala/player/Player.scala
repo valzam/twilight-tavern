@@ -1,6 +1,7 @@
 package player
 
 import attributes._
+import items.{BaseItem, Shield, Weapon}
 
 /**
   * Created by valentin on 17.11.16.
@@ -43,6 +44,33 @@ abstract class Player(name: String) {
     status.health = stats.maxHealth
     status.endurance = stats.maxEndurance
     status.mana = stats.maxMana
+  }
+
+  def equipItem(item: BaseItem): Unit = {
+    item match {
+      case w: Weapon => equipWeapon(w)
+      case s: Shield => equipShield(s)
+      case _ =>
+    }
+  }
+
+  def equipWeapon(weapon: Weapon): Unit ={
+    addItemGeneralAttributes(weapon)
+    stats.combatStats.baseDmg += weapon.baseDmg
+    weapons.rightHand = weapon
+  }
+
+  def equipShield(shield: Shield): Unit ={
+    addItemGeneralAttributes(shield)
+    stats.combatStats.armor += shield.armor
+    weapons.leftHand = shield
+  }
+
+  def addItemGeneralAttributes(item: BaseItem): Unit ={
+    stats.strength += item.stats.strength
+    stats.dexterity += item.stats.dexterity
+    stats.vitality += item.stats.vitality
+    stats.intelligence += item.stats.intelligence
   }
 
   def displayStatus(): Unit ={
