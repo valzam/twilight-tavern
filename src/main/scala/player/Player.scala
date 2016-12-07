@@ -1,7 +1,7 @@
 package player
 
 import attributes._
-import items.{BaseItem, Weapon}
+import items.Item
 
 /**
   * Created by valentin on 17.11.16.
@@ -11,8 +11,7 @@ abstract class Player(name: String) {
   val status = new Status
   val stats = new BaseStats
   val inventory = new Inventory
-  val armor = new Armor
-  val equippedWeapons = new EquippedWeapons
+  val equippedItems = new EquippedItems
 
   stats.setAllToOne()
 
@@ -46,26 +45,21 @@ abstract class Player(name: String) {
     status.mana = stats.maxMana
   }
 
-  def equipItem(item: BaseItem): Unit = {
-    addItemGeneralAttributes(item)
+  def equipItem(item: Item): Unit = {
+    stats.addItemGeneralAttributes(item)
 
-    item match {
-      case w: Weapon => equipWeapon(w)
-      case _ =>
-    }
+    stats.combatStats.baseDmg += item.baseDmg
+    stats.combatStats.armor += item.armor
+    equippedItems.equipItem(item)
 
-    def equipWeapon(w: Weapon): Unit ={
-      stats.combatStats.baseDmg += w.baseDmg
-      stats.combatStats.armor += w.armor
-      equippedWeapons.equipWeapon(w)
-    }
   }
 
-  def addItemGeneralAttributes(item: BaseItem): Unit ={
-    stats.strength += item.attributes.strength
-    stats.dexterity += item.attributes.dexterity
-    stats.vitality += item.attributes.vitality
-    stats.intelligence += item.attributes.intelligence
+  def unequipItem(item: Item): Unit = {
+    stats.removeItemGeneralAttributes(item)
+
+    stats.combatStats.baseDmg -= item.baseDmg
+    stats.combatStats.armor -= item.armor
+    equippedItems.unequipItem(item.slot)
   }
 
   def displayStatus(): Unit ={

@@ -1,5 +1,7 @@
 package player.attributes
 
+import items.Item
+
 /**
   * Created by valentin on 17.11.16.
   */
@@ -24,6 +26,20 @@ class BaseStats {
     dexterity = 1
     vitality = 1
     intelligence = 1
+  }
+
+  def addItemGeneralAttributes(item: Item): Unit ={
+    strength += item.attributes.strength
+    dexterity += item.attributes.dexterity
+    vitality += item.attributes.vitality
+    intelligence += item.attributes.intelligence
+  }
+
+  def removeItemGeneralAttributes(item: Item): Unit ={
+    strength -= item.attributes.strength
+    dexterity -= item.attributes.dexterity
+    vitality -= item.attributes.vitality
+    intelligence -= item.attributes.intelligence
   }
 
   def strength: Double = _strength

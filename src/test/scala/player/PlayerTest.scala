@@ -1,7 +1,7 @@
 package player
 
-import attributes.{Exp, WeaponSlot}
-import items.{ItemAttributes, Weapon}
+import attributes.Exp
+import items.{Item, ItemAttributes, ItemSlot}
 import org.scalatest.{BeforeAndAfterEach, FunSuite}
 
 /**
@@ -60,7 +60,14 @@ class PlayerTest extends FunSuite with BeforeAndAfterEach {
   }
 
   test("Unequipping an item should lower the player's stats by the item's stats") {
+    val testWeapon = TestWeapon()
+    p.equipItem(testWeapon)
+    p.unequipItem(testWeapon)
 
+    assert(p.stats.dexterity == 1)
+    assert(p.stats.strength == 1)
+    assert(p.stats.vitality == 1)
+    assert(p.stats.combatStats.baseDmg == 1)
   }
 }
 
@@ -73,19 +80,19 @@ class MockPlayer(name: String) extends Player(name) {
 }
 
 object TestWeapon {
-  def apply(): Weapon = {
-    Weapon(baseDmg = 3,
+  def apply(): Item = {
+    Item(baseDmg = 3,
       attributes = ItemAttributes(strength = 3, vitality = 2, dexterity = 5),
-      name = "Test Weapon", group = "sword", slot = WeaponSlot.RightHand)
+      name = "Test Weapon", group = "sword", slot = ItemSlot.RightHand)
   }
 
 }
 
 object TestShield {
-  def apply(): Weapon = {
-    Weapon(armor = 3,
+  def apply(): Item = {
+    Item(armor = 3,
       attributes = ItemAttributes(strength = 3, vitality = 2, dexterity = 5),
-      name = "Test Shield", group = "shield", slot = WeaponSlot.LeftHand)
+      name = "Test Shield", group = "shield", slot = ItemSlot.LeftHand)
   }
 
 }
