@@ -46,20 +46,26 @@ abstract class Player(name: String) {
   }
 
   def equipItem(item: Item): Unit = {
-    stats.addItemGeneralAttributes(item)
+    if (equippedItems.isOccupied(item.slot)) {
+      val previousItem = equippedItems.equippedItems(item.slot)
+      unequipItem(previousItem)
+    }
 
-    stats.combatStats.baseDmg += item.baseDmg
-    stats.combatStats.armor += item.armor
-    equippedItems.equipItem(item)
-
+      stats.addItemGeneralAttributes(item)
+      stats.combatStats.baseDmg += item.baseDmg
+      stats.combatStats.armor += item.armor
+      equippedItems.equipItem(item)
   }
 
   def unequipItem(item: Item): Unit = {
-    stats.removeItemGeneralAttributes(item)
+    if (equippedItems.isEquipped(item)) {
 
-    stats.combatStats.baseDmg -= item.baseDmg
-    stats.combatStats.armor -= item.armor
-    equippedItems.unequipItem(item.slot)
+      stats.removeItemGeneralAttributes(item)
+      stats.combatStats.baseDmg -= item.baseDmg
+      stats.combatStats.armor -= item.armor
+      equippedItems.unequipItem(item.slot)
+
+    }
   }
 
   def displayStatus(): Unit ={

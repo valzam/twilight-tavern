@@ -17,7 +17,7 @@ class EquippedItemsTest extends FunSuite with BeforeAndAfterEach {
     val testWeapon = TestWeapon()
     p.equipItem(testWeapon)
 
-    assert(p.equippedWeapons(ItemSlot.RightHand) == testWeapon)
+    assert(p.equippedItems(ItemSlot.RightHand) == testWeapon)
   }
 
   test("Unequipping a weapon should remove it from its slot") {
@@ -25,7 +25,18 @@ class EquippedItemsTest extends FunSuite with BeforeAndAfterEach {
     p.equipItem(testWeapon)
     p.unequipItem(testWeapon.slot)
 
-    assert(p.equippedWeapons.isEmpty)
+    assert(p.equippedItems.isEmpty)
+  }
+
+  test("isEquipped should correctly identify if an item is equipped already") {
+    val testWeapon = TestWeapon()
+    p.equipItem(testWeapon)
+
+    assert(p.isEquipped(testWeapon))
+  }
+
+  test("isOccupied should correctly identify if a slot is already occupied") {
+    assert(!p.isOccupied(ItemSlot.RightHand))
   }
 
 }

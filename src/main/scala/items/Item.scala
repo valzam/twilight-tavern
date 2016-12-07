@@ -14,11 +14,20 @@ case class Item(name: String, group: String, slot: ItemSlot,
 
   val id = IDGenerator()
 
+  override def equals(that: Any): Boolean =
+    that match {
+      case that: Item => that.canEqual(this) && this.hashCode == that.hashCode
+      case _ => false
+    }
+
+  def canEqual(a: Any) = a.isInstanceOf[Item]
+
+  override def hashCode(): Int = id
 }
 
 object IDGenerator {
   val generator = new Random(1828823742)
-  def apply(): String = generator.nextInt().toString
+  def apply(): Int = generator.nextInt()
 }
 
 object WoodenSword {

@@ -59,9 +59,31 @@ class PlayerTest extends FunSuite with BeforeAndAfterEach {
     assert(p.stats.combatStats.armor == 4)
   }
 
+  test("Equipping an item when the slot already has an equipped item should correctly update the stats ") {
+    val testItem1 = TestWeapon()
+    val testItem2 = TestWeapon2()
+    p.equipItem(testItem1)
+    p.equipItem(testItem2)
+
+    assert(p.stats.dexterity == 7)
+    assert(p.stats.strength == 5)
+    assert(p.stats.vitality == 4)
+    assert(p.stats.combatStats.baseDmg == 5)
+  }
+
   test("Unequipping an item should lower the player's stats by the item's stats") {
     val testWeapon = TestWeapon()
     p.equipItem(testWeapon)
+    p.unequipItem(testWeapon)
+
+    assert(p.stats.dexterity == 1)
+    assert(p.stats.strength == 1)
+    assert(p.stats.vitality == 1)
+    assert(p.stats.combatStats.baseDmg == 1)
+  }
+
+  test("Uneqipping an item that was not equipped should do nothing") {
+    val testWeapon = TestWeapon()
     p.unequipItem(testWeapon)
 
     assert(p.stats.dexterity == 1)
@@ -83,6 +105,15 @@ object TestWeapon {
   def apply(): Item = {
     Item(baseDmg = 3,
       attributes = ItemAttributes(strength = 3, vitality = 2, dexterity = 5),
+      name = "Test Weapon", group = "sword", slot = ItemSlot.RightHand)
+  }
+
+}
+
+object TestWeapon2 {
+  def apply(): Item = {
+    Item(baseDmg = 4,
+      attributes = ItemAttributes(strength = 4, vitality = 3, dexterity = 6),
       name = "Test Weapon", group = "sword", slot = ItemSlot.RightHand)
   }
 

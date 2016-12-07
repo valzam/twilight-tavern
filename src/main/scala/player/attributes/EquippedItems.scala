@@ -8,18 +8,30 @@ import items.ItemSlot.ItemSlot
   */
 class EquippedItems {
 
-  var equippedWeapons:Map[ItemSlot, Item] = Map()
+  var equippedItems:Map[ItemSlot, Item] = Map()
 
   def equipItem(item: Item): Unit = {
     item.slot match {
-      case ItemSlot.RightHand => equippedWeapons += (ItemSlot.RightHand -> item)
-      case ItemSlot.LeftHand => equippedWeapons += (ItemSlot.LeftHand -> item)
-      case ItemSlot.TwoHand => equippedWeapons += (ItemSlot.TwoHand -> item)
+      case ItemSlot.RightHand => equippedItems += (ItemSlot.RightHand -> item)
+      case ItemSlot.LeftHand => equippedItems += (ItemSlot.LeftHand -> item)
+      case ItemSlot.TwoHand => equippedItems += (ItemSlot.TwoHand -> item)
     }
   }
 
   def unequipItem(slot: ItemSlot): Unit = {
-    equippedWeapons -= slot
+    equippedItems -= slot
+  }
+
+  def isEquipped(item: Item): Boolean = {
+    val i = equippedItems.get(item.slot)
+    i match {
+      case Some(i) => i == item
+      case None => false
+    }
+  }
+
+  def isOccupied(slot: ItemSlot): Boolean = {
+    equippedItems.get(slot).isDefined
   }
 }
 
