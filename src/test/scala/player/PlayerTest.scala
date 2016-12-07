@@ -1,6 +1,6 @@
 package player
 
-import attributes.Exp
+import attributes.{Exp, WeaponSlot}
 import items.{ItemAttributes, Weapon}
 import org.scalatest.{BeforeAndAfterEach, FunSuite}
 
@@ -76,7 +76,7 @@ object TestWeapon {
   def apply(): Weapon = {
     Weapon(baseDmg = 3,
       attributes = ItemAttributes(strength = 3, vitality = 2, dexterity = 5),
-      name = "Test Weapon", group = "sword")
+      name = "Test Weapon", group = "sword", slot = WeaponSlot.RightHand)
   }
 
 }
@@ -85,7 +85,7 @@ object TestShield {
   def apply(): Weapon = {
     Weapon(armor = 3,
       attributes = ItemAttributes(strength = 3, vitality = 2, dexterity = 5),
-      name = "Test Shield", group = "shield")
+      name = "Test Shield", group = "shield", slot = WeaponSlot.LeftHand)
   }
 
 }

@@ -26,7 +26,7 @@ object TestWeapon {
   def apply(): Weapon = {
     Weapon(baseDmg = 3,
       attributes = ItemAttributes(strength = 3, vitality = 2, dexterity = 5),
-      name = "Test Weapon", group = "sword")
+      name = "Test Weapon", group = "sword", slot = WeaponSlot.RightHand)
   }
 
 }
