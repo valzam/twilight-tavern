@@ -20,13 +20,6 @@ class AttributesTest extends FunSuite {
     assert(f.testBaseStats.vitality == 1)
   }
 
-  test("All max stats should be 1 after instantiation"){
-    val f = fixture
-    assert(f.testBaseStats.maxHealth == 1)
-    assert(f.testBaseStats.maxMana == 1)
-    assert(f.testBaseStats.maxEndurance == 1)
-  }
-
   test("Adding vitality should correctly update the max health"){
     val f = fixture
     val before = f.testBaseStats.maxHealth

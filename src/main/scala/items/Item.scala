@@ -20,7 +20,7 @@ case class Item(name: String, group: String, slot: ItemSlot,
       case _ => false
     }
 
-  def canEqual(a: Any) = a.isInstanceOf[Item]
+  //override def canEqual(a: Any) = a.isInstanceOf[Item]
 
   override def hashCode(): Int = id
 }
@@ -28,11 +28,4 @@ case class Item(name: String, group: String, slot: ItemSlot,
 object IDGenerator {
   val generator = new Random(1828823742)
   def apply(): Int = generator.nextInt()
-}
-
-object WoodenSword {
-  def apply(): Item = Item(baseDmg = 3,
-    attributes = ItemAttributes(strength = 5),
-    name= "Wooden Sword",
-    group = "sword", slot = ItemSlot.RightHand)
 }
