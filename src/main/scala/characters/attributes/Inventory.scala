@@ -1,4 +1,4 @@
-package player.attributes
+package characters.attributes
 
 import items.Item
 

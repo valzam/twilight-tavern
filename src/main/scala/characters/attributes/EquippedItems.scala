@@ -1,4 +1,4 @@
-package player.attributes
+package characters.attributes
 
 import items.{Item, ItemSlot}
 import items.ItemSlot.ItemSlot
@@ -25,7 +25,7 @@ class EquippedItems {
   def isEquipped(item: Item): Boolean = {
     val i = equippedItems.get(item.slot)
     i match {
-      case Some(i) => i == item
+      case Some(it) => it == item
       case None => false
     }
   }

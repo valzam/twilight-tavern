@@ -1,6 +1,6 @@
-package player
+package characters.player
 
-import attributes._
+import characters.attributes._
 import items.Item
 
 /**
@@ -9,11 +9,10 @@ import items.Item
 abstract class Player(name: String) {
 
   val status = new Status
-  val stats = new BaseStats
+  val attributes = new Attributes
+  val combatStats = new CombatStats
   val inventory = new Inventory
   val equippedItems = new EquippedItems
-
-  stats.setAllToOne()
 
   def attack(): Double
 
@@ -26,23 +25,23 @@ abstract class Player(name: String) {
   def gainExp(exp: Double): Unit ={
     status.exp += exp
 
-    if (status.exp >= stats.expToLevel){
-      status.exp = status.exp - stats.expToLevel
+    if (status.exp >= attributes.expToLevel){
+      status.exp = status.exp - attributes.expToLevel
       levelUp()
     }
   }
 
   def gainLevel(): Unit ={
     status.level += 1
-    stats.expToLevel += stats.expToLevel * Exp.ADDITIONAL_PER_LEVEL
+    attributes.expToLevel += attributes.expToLevel * Exp.ADDITIONAL_PER_LEVEL
 
     regenerate()
   }
 
   def regenerate(): Unit ={
-    status.health = stats.maxHealth
-    status.endurance = stats.maxEndurance
-    status.mana = stats.maxMana
+    status.health = attributes.maxHealth
+    status.endurance = attributes.maxEndurance
+    status.mana = attributes.maxMana
   }
 
   def equipItem(item: Item): Unit = {
@@ -51,18 +50,16 @@ abstract class Player(name: String) {
       unequipItem(previousItem)
     }
 
-      stats.addItemGeneralAttributes(item)
-      stats.combatStats.baseDmg += item.baseDmg
-      stats.combatStats.armor += item.armor
+      attributes.addItemGeneralAttributes(item)
+      combatStats.addItemCombatStats(item)
       equippedItems.equipItem(item)
   }
 
   def unequipItem(item: Item): Unit = {
     if (equippedItems.isEquipped(item)) {
 
-      stats.removeItemGeneralAttributes(item)
-      stats.combatStats.baseDmg -= item.baseDmg
-      stats.combatStats.armor -= item.armor
+      attributes.removeItemGeneralAttributes(item)
+      combatStats.removeItemCombatStats(item)
       equippedItems.unequipItem(item.slot)
 
     }

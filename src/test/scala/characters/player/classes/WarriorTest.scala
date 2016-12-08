@@ -1,4 +1,4 @@
-package player.classes
+package characters.player.classes
 
 import org.scalatest.FunSuite
 
@@ -14,10 +14,10 @@ class WarriorTest extends FunSuite {
 
   test("Creating a warrior should correctly set the base stats") {
     val f = fixture
-    assert(f.testWarrior.stats.strength == WarriorBaseStats.STRENGTH)
-    assert(f.testWarrior.stats.vitality == WarriorBaseStats.VITALITY)
-    assert(f.testWarrior.stats.dexterity == WarriorBaseStats.DEXTERIRY)
-    assert(f.testWarrior.stats.combatStats.baseDmg == WarriorBaseStats.BASE_DMG)
+    assert(f.testWarrior.attributes.strength == WarriorBaseStats.STRENGTH)
+    assert(f.testWarrior.attributes.vitality == WarriorBaseStats.VITALITY)
+    assert(f.testWarrior.attributes.dexterity == WarriorBaseStats.DEXTERIRY)
+    assert(f.testWarrior.combatStats.baseDmg == WarriorBaseStats.BASE_DMG)
   }
 
   test("Attacking should correctly calculate the damage") {

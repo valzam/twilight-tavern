@@ -1,15 +1,15 @@
-package player.attributes
+package characters.attributes
 
 import org.scalatest.FunSuite
 
 /**
   * Created by valentin on 19.11.16.
   */
-class BaseStatsTest extends FunSuite {
+class AttributesTest extends FunSuite {
 
   val fixture =
     new {
-      val testBaseStats = new BaseStats
+      val testBaseStats = new Attributes
     }
 
   test("All basic stats should be 1 after instantiation"){

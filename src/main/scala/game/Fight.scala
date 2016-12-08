@@ -1,7 +1,7 @@
 package game
 
-import npc.enemies.{MonsterBase, Rat, Reward}
-import player.Player
+import characters.npc.enemies.{MonsterBase, Rat, Reward}
+import characters.player.Player
 
 /**
   * Created by valentin on 17.11.16.

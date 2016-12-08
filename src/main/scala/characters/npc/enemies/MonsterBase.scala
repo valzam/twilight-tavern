@@ -1,6 +1,6 @@
-package npc.enemies
+package characters.npc.enemies
 
-import player.attributes.{Inventory, BaseStats, Status}
+import characters.attributes.{CombatStats, Inventory, Status}
 
 
 /**
@@ -8,12 +8,12 @@ import player.attributes.{Inventory, BaseStats, Status}
   */
 abstract class MonsterBase {
   val status = new Status
-  val stats = new BaseStats
+  val combatStats = new CombatStats
   val inventory = new Inventory
   val reward: Reward
 
   def attack(): Double = {
-    stats.combatStats.baseDmg
+    combatStats.baseDmg
   }
 
   def takeDmg(dmg: Double): Unit = {

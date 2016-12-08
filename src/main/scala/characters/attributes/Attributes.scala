@@ -1,4 +1,4 @@
-package player.attributes
+package characters.attributes
 
 import items.Item
 
@@ -6,15 +6,13 @@ import items.Item
   * Created by valentin on 17.11.16.
   */
 
-class BaseStats {
+class Attributes {
   //TODO Factor the high level stats into another class
   var maxHealth: Double = 1
   var maxEndurance: Double = 1
   var maxMana: Double = 1
 
   var expToLevel: Double = 10
-
-  val combatStats = new CombatStats
 
   private[this] var _strength: Double = 1
   private[this] var _dexterity: Double = 1

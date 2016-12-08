@@ -1,4 +1,4 @@
-package npc.enemies
+package characters.npc.enemies
 
 /**
   * Created by valentin on 18.11.16.

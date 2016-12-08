@@ -1,4 +1,4 @@
-package player.classes
+package characters.player.classes
 
 /**
   * Created by valentin on 19.11.16.
