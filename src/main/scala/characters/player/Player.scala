@@ -22,6 +22,8 @@ abstract class Player(name: String) {
 
   def takeDmg(dmg: Double): Unit ={
     status.health -= dmg
+    if (status.health <= 0)
+      eventEngine(PlayerEvent.Died)
   }
 
   def gainExp(exp: Double): Unit ={
