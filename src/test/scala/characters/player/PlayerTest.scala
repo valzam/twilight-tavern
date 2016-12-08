@@ -24,7 +24,7 @@ class PlayerTest extends FunSuite with BeforeAndAfterEach {
 
   test("Gaining a level should increase the needed exp for the next level") {
     p.gainLevel()
-    val newExpNeeded = 10 + 10 * Exp.ADDITIONAL_PER_LEVEL
+    val newExpNeeded = (10 + 10 * Exp.ADDITIONAL_PER_LEVEL).toInt
     assert(p.attributes.expToLevel == newExpNeeded )
   }
 

@@ -20,9 +20,9 @@ class Warrior(name: String) extends Player(name) {
 
   def levelUp(): Unit ={
 
-    attributes.strength += 2.0
-    attributes.vitality += 3.0
-    attributes.dexterity += 1.0
+    attributes.strength += 2
+    attributes.vitality += 3
+    attributes.dexterity += 1
 
     gainLevel()
   }

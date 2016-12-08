@@ -32,8 +32,9 @@ abstract class Player(name: String) {
   }
 
   def gainLevel(): Unit ={
+    println("You level up, congrats!")
     status.level += 1
-    attributes.expToLevel += attributes.expToLevel * Exp.ADDITIONAL_PER_LEVEL
+    attributes.expToLevel += (attributes.expToLevel * Exp.ADDITIONAL_PER_LEVEL).toInt
 
     regenerate()
   }

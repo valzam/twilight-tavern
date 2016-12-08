@@ -7,8 +7,8 @@ import items.Item
   */
 class CombatStats {
 
-  private[this] var _baseDmg: Double = 1
-  private[this] var _armor: Double = 1
+  private[this] var _baseDmg: Int = 1
+  private[this] var _armor: Int = 1
 
   def addItemCombatStats(item: Item): Unit = {
     baseDmg += item.baseDmg
@@ -20,15 +20,15 @@ class CombatStats {
     armor -= item.armor
   }
 
-  def baseDmg: Double = _baseDmg
+  def baseDmg: Int = _baseDmg
 
-  def baseDmg_=(value: Double): Unit = {
+  def baseDmg_=(value: Int): Unit = {
     _baseDmg = value
   }
 
-  def armor: Double = _armor
+  def armor: Int = _armor
 
-  def armor_=(value: Double): Unit = {
+  def armor_=(value: Int): Unit = {
     _armor = value
   }
 }

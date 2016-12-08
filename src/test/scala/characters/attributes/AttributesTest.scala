@@ -31,21 +31,21 @@ class AttributesTest extends FunSuite {
     val f = fixture
     val before = f.testBaseStats.maxHealth
     f.testBaseStats.vitality = 3
-    assert(f.testBaseStats.maxHealth == before+ BaseStatsMulti.MAX_HEALTH *3)
+    assert(f.testBaseStats.maxHealth == (before+ BaseStatsMulti.MAX_HEALTH *3).toInt)
   }
 
   test("Adding vitality should correctly update the max endurance"){
     val f = fixture
     val before = f.testBaseStats.maxEndurance
     f.testBaseStats.vitality = 3
-    assert(f.testBaseStats.maxEndurance == before+ BaseStatsMulti.MAX_ENDURANCE *3)
+    assert(f.testBaseStats.maxEndurance == (before+ BaseStatsMulti.MAX_ENDURANCE *3).toInt)
   }
 
   test("Adding intelligence should correctly update the max mana"){
     val f = fixture
     val before = f.testBaseStats.maxMana
     f.testBaseStats.intelligence = 3
-    assert(f.testBaseStats.maxMana == before+ BaseStatsMulti.MAX_MANA *3)
+    assert(f.testBaseStats.maxMana == (before+ BaseStatsMulti.MAX_MANA *3).toInt)
   }
 
 }

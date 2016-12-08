@@ -8,16 +8,16 @@ import items.Item
 
 class Attributes {
   //TODO Factor the high level stats into another class
-  var maxHealth: Double = 1
-  var maxEndurance: Double = 1
-  var maxMana: Double = 1
+  var maxHealth: Int = 1
+  var maxEndurance: Int = 1
+  var maxMana: Int = 1
 
-  var expToLevel: Double = 10
+  var expToLevel: Int = 10
 
-  private[this] var _strength: Double = 1
-  private[this] var _dexterity: Double = 1
-  private[this] var _vitality: Double = 1
-  private[this] var _intelligence: Double = 1
+  private[this] var _strength: Int = 1
+  private[this] var _dexterity: Int = 1
+  private[this] var _vitality: Int = 1
+  private[this] var _intelligence: Int = 1
 
   def setAllToOne(): Unit ={
     strength = 1
@@ -40,31 +40,31 @@ class Attributes {
     intelligence -= item.attributes.intelligence
   }
 
-  def strength: Double = _strength
+  def strength: Int = _strength
 
-  def strength_=(value: Double): Unit = {
+  def strength_=(value: Int): Unit = {
     _strength = value
   }
 
-  def dexterity: Double = _dexterity
+  def dexterity: Int = _dexterity
 
-  def dexterity_=(value: Double): Unit = {
+  def dexterity_=(value: Int): Unit = {
     _dexterity = value
   }
 
-  def vitality: Double = _vitality
+  def vitality: Int = _vitality
 
-  def vitality_=(value: Double): Unit = {
+  def vitality_=(value: Int): Unit = {
     _vitality = value
-    maxHealth = maxHealth + BaseStatsMulti.MAX_HEALTH * vitality
-    maxEndurance = maxEndurance + BaseStatsMulti.MAX_ENDURANCE * vitality
+    maxHealth = (maxHealth + BaseStatsMulti.MAX_HEALTH * vitality).toInt
+    maxEndurance = (maxEndurance + BaseStatsMulti.MAX_ENDURANCE * vitality).toInt
   }
 
-  def intelligence: Double = _intelligence
+  def intelligence: Int = _intelligence
 
-  def intelligence_=(value: Double): Unit = {
+  def intelligence_=(value: Int): Unit = {
     _intelligence = value
-    maxMana = maxMana + BaseStatsMulti.MAX_MANA * intelligence
+    maxMana = (maxMana + BaseStatsMulti.MAX_MANA * intelligence).toInt
   }
 
 }

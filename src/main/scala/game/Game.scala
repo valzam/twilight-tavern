@@ -1,6 +1,9 @@
 package game
 
+import characters.npc.enemies.Zombie
+import characters.player.Player
 import characters.player.classes.Warrior
+
 import scala.io._
 
 /**
@@ -18,12 +21,19 @@ object Game extends App {
 
     choice match {
       case "0" => displayCharInfo()
+      case "1" => startFight(p)
       case _ => print("I don't know that option")
     }
   }
 
   def displayChoices(): Unit ={
     println("0: Display my character info")
+    println("1: Fight an evil monster")
+  }
+
+  def startFight(p: Player): Unit ={
+    val m = new Zombie
+    Fight.engage(p, m)
   }
 
   def displayCharInfo(): Unit ={
