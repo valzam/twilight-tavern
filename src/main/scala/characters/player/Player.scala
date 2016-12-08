@@ -1,6 +1,7 @@
 package characters.player
 
 import characters.attributes._
+import events.{PlayerEvent, PlayerEventEngine}
 import items.Item
 
 /**
@@ -13,6 +14,7 @@ abstract class Player(name: String) {
   val combatStats = new CombatStats
   val inventory = new Inventory
   val equippedItems = new EquippedItems
+  val eventEngine = PlayerEventEngine
 
   def attack(): Double
 
@@ -32,10 +34,10 @@ abstract class Player(name: String) {
   }
 
   def gainLevel(): Unit ={
-    println("You level up, congrats!")
     status.level += 1
     attributes.expToLevel += (attributes.expToLevel * Exp.ADDITIONAL_PER_LEVEL).toInt
 
+    eventEngine(PlayerEvent.LevelUp)
     regenerate()
   }
 
@@ -69,5 +71,6 @@ abstract class Player(name: String) {
   def displayStatus(): Unit ={
     println(name)
     println(status.toString)
+    println(attributes.expToLevel)
   }
 }

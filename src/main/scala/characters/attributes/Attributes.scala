@@ -8,7 +8,7 @@ import items.Item
 
 class Attributes {
   //TODO Factor the high level stats into another class
-  var maxHealth: Int = 1
+  var maxHealth: Int = 10
   var maxEndurance: Int = 1
   var maxMana: Int = 1
 

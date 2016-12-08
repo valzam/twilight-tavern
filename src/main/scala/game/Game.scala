@@ -1,6 +1,6 @@
 package game
 
-import characters.npc.enemies.Zombie
+import characters.npc.enemies.{Rat, Zombie}
 import characters.player.Player
 import characters.player.classes.Warrior
 
@@ -18,6 +18,7 @@ object Game extends App {
     println("What do you want to do?")
     displayChoices()
     val choice = Source.stdin.getLines.next()
+    clearScreen()
 
     choice match {
       case "0" => displayCharInfo()
@@ -32,13 +33,17 @@ object Game extends App {
   }
 
   def startFight(p: Player): Unit ={
-    val m = new Zombie
+    val m = new Rat
     Fight.engage(p, m)
   }
 
   def displayCharInfo(): Unit ={
     print("Your character is: ")
     println(p.displayStatus())
+  }
+
+  def clearScreen(): Unit ={
+    print("\033[2J")
   }
 
 }
